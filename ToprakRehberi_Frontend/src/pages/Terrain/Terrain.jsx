@@ -6,10 +6,6 @@ import terrainService from "../../service/terrain.service";
 import HomeLayout from "../../component/HomeLayout";
 
 const Terrain = () => {
-  /*const handleNavigate = (id, area) => {
-    Navigate(`/plantedCrop/${id}`, { state: { area } });
-  };*/
-  /* terrain Terrain*/
   const [terrainList, setTerrainList] = useState([]);
   const [msg, setMsg] = useState("");
   useEffect(() => {
@@ -73,7 +69,6 @@ const Terrain = () => {
                         <td>
                           {p.area} m<sup>2</sup>{" "}
                         </td>
-                        {/*<td>{p.status}</td>*/}
                         <td>
                           <Link
                             to={"/plantedCrop/" + p.id}

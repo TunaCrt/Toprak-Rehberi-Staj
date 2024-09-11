@@ -200,26 +200,6 @@ const PlantedCropAdd = () => {
 
                             <div className="card-body">
                                 <form onSubmit={(e) => TerrainRegister(e)}>
-                                    {/*<div className="mb-3">
-                                        <label>Harvest Date</label>
-                                        <input
-                                            type="date" // Tarih seçici kullanarak tarih formatını zorunlu kıldım
-                                            name="harvestDate"
-                                            className="form-control"
-                                            onChange={(e) => handleChange(e)}
-                                            value={plantedCrop.harvestDate}
-                                        />
-                                    </div>*/}
-{/*<div className="mb-3">
-                                        <label>Status</label>
-                                        <input
-                                            type="text"
-                                            name="status"
-                                            className="form-control"
-                                            onChange={(e) => handleChange(e)}
-                                            value={plantedCrop.status}
-                                        />
-                                    </div>*/}
                                     <div className="mb-3">
                                         <label>Planting Date</label>
                                         <input

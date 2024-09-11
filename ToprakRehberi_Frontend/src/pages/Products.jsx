@@ -53,12 +53,10 @@ const Products = () => {
                     <tr>
                       <th scope="col">Sıra No</th>
                       <th scope="col">ürün ismi</th>
-                      {/*<th scope="col">Description</th>*/}
                       <th scope="col">Ekim Zamanı</th>
                       
                       <th scope="col">Optimal Sıcaklık</th>
-                      {/*<th scope="col">ortalama fiyat</th>*/}
-                      {/* <th scope="col">Status</th>*/}
+                      
                       <th scope="col">Başarı Oranı</th>
                       <th scope="col"></th>
                     </tr>
@@ -68,14 +66,11 @@ const Products = () => {
                       <tr>
                         <td>{num + 1}</td>
                         <td>{p.productName}</td>
-                        {/* <td>{p.description}</td> */}
                         <td>{p.plantingSeason}</td>
                         
                         <td>{p.optimalTemperature}</td>
 
-                        {/*<td>{p.price}</td>*/}
                         <td>{p.successRate} %</td>
-                        {/*<td>{p.status}</td>*/}
 
                         <td>
                           <Link
@@ -84,15 +79,7 @@ const Products = () => {
                           >
                             Detay
                           </Link>
-                          {/*
-                          
-                          <Link
-                            to={"editProduct/" + p.id}
-                            className="btn btn-sm btn-primary"
-                          >
-                            Edit
-                          </Link>
-                          */
+                          {
                           <button
                             onClick={() => deleteProduct(p.id)}
                             className="btn btn-danger ms-1"
