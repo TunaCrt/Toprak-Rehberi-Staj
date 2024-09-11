@@ -16,7 +16,6 @@ const PlantedCrop = () => {
   const [productList, setProductList] = useState([]); // Ürün listesi için state
   const [rating, setRating] = useState("");
   const [selectedProductId, setSelectedProductId] = useState(null); // Seçilen ürünün ID'si
-  const [selectedPlantedCropId, setSelectedPlantedCroptId] = useState(null); // Seçilen ürünün ID'si
 
 
   const { id } = useParams();

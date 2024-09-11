@@ -12,7 +12,6 @@ import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Terrain from './pages/Terrain/Terrain';
 import PlantedCropAdd from './pages/PlantedCrop/PlantedCropAdd';
-import Sowing from './pages/Sowing/Sowing';
 import PrivateRoute from './component/PrivateRoute'; // PrivateRoute bileşenini import edin
 
 function App() {
@@ -30,7 +29,6 @@ function App() {
       <Route path='/editTerrain/:id' element={<PrivateRoute element={EditTerrain} />} />
       <Route path='/terrainAdd' element={<PrivateRoute element={TerrainAdd} />} />
       <Route path='/plantedCropAdd/:id' element={<PrivateRoute element={PlantedCropAdd} />} />
-      <Route path='/sowing/:id' element={<PrivateRoute element={Sowing} />} />
     </Routes>
   );
 }
