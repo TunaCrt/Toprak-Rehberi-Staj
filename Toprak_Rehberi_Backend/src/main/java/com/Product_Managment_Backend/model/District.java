@@ -25,6 +25,4 @@ public class District {
     @JsonIgnore
     @OneToMany(mappedBy = "district")
     private List<Neighborhood> neighborhoods;
-
-    // Getters and Setters
 }

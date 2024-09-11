@@ -21,8 +21,6 @@ public class City {
     @JsonIgnore
     @OneToMany(mappedBy = "city")
     private List<District> districts;
-
-
 }
 
 

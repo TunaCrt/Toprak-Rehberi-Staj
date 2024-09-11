@@ -33,8 +33,6 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PlantedCrop> plantedCrops = new HashSet<>();
 
-
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Sowing> sowings = new HashSet<>();
 }

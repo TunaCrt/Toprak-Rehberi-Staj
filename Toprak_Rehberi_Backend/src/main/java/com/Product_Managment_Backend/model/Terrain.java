@@ -44,8 +44,4 @@ public class Terrain {
     @JoinColumn(name = "user_id",nullable = false, referencedColumnName = "id")
     @JsonIgnore
     private User user;*/
-
-   /* @OneToMany(mappedBy = "terrain", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference("terrain-land")
-    private List<PlantedCrop> plantedCrop;*/
 }

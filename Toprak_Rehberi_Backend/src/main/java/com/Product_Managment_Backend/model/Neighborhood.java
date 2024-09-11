@@ -19,6 +19,4 @@ public class Neighborhood {
     @ManyToOne
     @JoinColumn(name = "ilce_id")
     private District district;
-
-    // Getters and Setters
 }

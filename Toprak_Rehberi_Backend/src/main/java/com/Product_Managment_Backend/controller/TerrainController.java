@@ -30,7 +30,7 @@ public class TerrainController {
         return new ResponseEntity<>(terrainService.getTerrainById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/deleteTerrain/{id}")
+    @DeleteMapping("/deleteTerrain/{id}")
     public ResponseEntity<?> deleteTerrain(@PathVariable Integer id) {
         return new ResponseEntity<>(terrainService.deleteTerrain(id), HttpStatus.OK);
     }
