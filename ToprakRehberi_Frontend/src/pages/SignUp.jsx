@@ -83,7 +83,10 @@ const SignIn = () => {
                           required
                         />
                       </div>
-                      <button type="submit" className="btn btn-primary">Giriş Yap</button>
+                      <div className="d-flex justify-content-center mt-3">
+                      <button type="submit" className="btn btn-primary btn-block btn-lg">Giriş Yap</button>
+                    </div>
+                      
                     </form>
                     <div className="d-flex justify-content-center mt-3">
                       <a
@@ -93,6 +96,7 @@ const SignIn = () => {
                         Google ile Giriş Yap
                       </a>
                     </div>
+                    
                     <p className="text-center text-muted mt-4 mb-0">
                       Hesabın yok mu?{" "}
                       <Link to="/signIn" className="fw-bold text-body">
