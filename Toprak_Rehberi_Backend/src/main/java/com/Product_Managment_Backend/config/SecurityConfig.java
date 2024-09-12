@@ -44,7 +44,14 @@ public class SecurityConfig {
                                         "/editProduct/{id}","/rate", "/{productId}/sowing",
                                         "/saveTerrain", "/terrain", "/terrain/{id}"
                                         , "/deleteTerrain/{id}", "/editTerrain/{id}","/getPlantedCropsByTerrainId2/").permitAll()
-                                .requestMatchers("/terrain", "/terrain/**","/cities", "/districts/**", "/neighborhoods/**","/savePlantedCrop", "/getPlantedCropsByTerrainId/**", "/plantedCrop/**", "/deletePlantedCrop/**", "/editPlantedCrop/**","/saveProduct2", "/product2", "/product/{id}", "/deleteProduct/{id}", "/editProduct/{id}","/rate", "/{productId}/sowing","/saveTerrain", "/terrain", "/terrain/{id}", "/deleteTerrain/{id}", "/editTerrain/{id}").authenticated() // Güncel endpoint'lerin erişim izinlerini kontrol edin
+                                .requestMatchers("/terrain", "/terrain/**","/cities", "/districts/**"
+                                        , "/neighborhoods/**","/savePlantedCrop",
+                                        "/getPlantedCropsByTerrainId/**","/getPlantedCropsByTerrainId2/**", "/plantedCrop/**","/plantedCrop2/**",
+                                        "/deletePlantedCrop/**", "/editPlantedCrop/**","/saveProduct2",
+                                        "/product2", "/product/{id}", "/deleteProduct/{id}",
+                                        "/editProduct/{id}","/rate", "/{productId}/sowing",
+                                        "/saveTerrain/**","/saveTerrain", "/terrain", "/terrain/{id}"
+                                        , "/deleteTerrain/{id}", "/editTerrain/{id}","/getPlantedCropsByTerrainId2/").authenticated() // Güncel endpoint'lerin erişim izinlerini kontrol edin
                                 .anyRequest().authenticated()
 
                         /*

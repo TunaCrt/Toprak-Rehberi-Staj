@@ -18,7 +18,7 @@ public class Terrain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer plantedCropId;
+    //private Integer plantedCropId;
 
     private Integer mahalleId;
 

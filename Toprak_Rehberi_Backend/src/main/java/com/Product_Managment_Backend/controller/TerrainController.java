@@ -17,7 +17,12 @@ public class TerrainController {
 
     @PostMapping("/saveTerrain")
     public ResponseEntity<?> saveTerrain(@RequestBody Terrain terrain) {
-        return new ResponseEntity<>(terrainService.saveTerrain(terrain), HttpStatus.CREATED);
+        try {
+            Terrain savedTerrain = terrainService.saveTerrain(terrain);
+            return new ResponseEntity<>(savedTerrain, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/terrain")

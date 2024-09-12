@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import productService from "../../service/terrain.service";
+import terrainService from "../../service/terrain.service";
 import HomeLayout from "../../component/HomeLayout";
 import locationService from "../../service/location.Service";
 
@@ -55,7 +55,7 @@ const TerrainAdd = () => {
   const TerrainRegsiter = (e) => {
     e.preventDefault();
 
-    productService
+    terrainService//
       .saveTerrain(terrain)
       .then((res) => {
         console.log("terrain Added Sucessfully");

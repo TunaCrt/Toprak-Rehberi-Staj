@@ -43,4 +43,4 @@ class TerrainService {
     }
 }
 
-export default new TerrainService();
+export default new TerrainService;

@@ -34,4 +34,4 @@ class locationService {
     }
 }
 
-export default new locationService();
+export default new locationService;

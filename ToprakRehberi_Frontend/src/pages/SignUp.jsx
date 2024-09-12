@@ -88,14 +88,14 @@ const SignIn = () => {
                     </div>
                       
                     </form>
-                    <div className="d-flex justify-content-center mt-3">
+                    {/*<div className="d-flex justify-content-center mt-3">
                       <a
                         href="http://localhost:8080/oauth2/authorization/google"
                         className="btn btn-outline-danger btn-block btn-lg"
                       >
                         Google ile Giriş Yap
                       </a>
-                    </div>
+                    </div>*/}
                     
                     <p className="text-center text-muted mt-4 mb-0">
                       Hesabın yok mu?{" "}
