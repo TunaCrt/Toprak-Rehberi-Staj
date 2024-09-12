@@ -1,12 +1,17 @@
 package com.Product_Managment_Backend.service;
 
+import com.Product_Managment_Backend.dto.PlantedCropDTO;
+import com.Product_Managment_Backend.dto.TerrainDTO;
+import com.Product_Managment_Backend.model.PlantedCrop;
 import com.Product_Managment_Backend.model.Product;
 import com.Product_Managment_Backend.model.Terrain;
+import com.Product_Managment_Backend.model.User;
 import com.Product_Managment_Backend.repository.ProductRepository;
 import com.Product_Managment_Backend.repository.TerrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class TerrainServiceImp implements TerrainService{
@@ -14,12 +19,41 @@ public class TerrainServiceImp implements TerrainService{
     @Autowired
     private TerrainRepository terrainRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public Terrain saveTerrain(Terrain terrain) {
 
         return terrainRepository.save(terrain);
     }
+    public List<TerrainDTO> getTerrainDTOsByUserId(Long id) {
+        List<Terrain> terrains = terrainRepository.findByUserId(id);
+        List<TerrainDTO> terrainDTOS = new ArrayList<>();
 
+        for (Terrain terrain : terrains) {
+            TerrainDTO dto = new TerrainDTO();
+            dto.setId(terrain.getId());
+            //dto.setUserId(terrain.getUser().getId());
+            dto.setAdaNo(terrain.getAdaNo());
+            dto.setArea(terrain.getArea());
+            dto.setMahalleId(terrain.getMahalleId());
+            dto.setTerrainName(terrain.getTerrainName());
+            dto.setDescription(terrain.getDescription());
+            dto.setStatus(terrain.getStatus());
+            dto.setParselNo(terrain.getParselNo());
+            dto.setTerrainType(terrain.getTerrainType());
+            // User bilgilerini ekle
+            User user = userService.getUserById(terrain.getUser().getId());
+            if (user != null) {
+                dto.setUserId(terrain.getUser().getId());
+            }
+
+            terrainDTOS.add(dto);
+        }
+
+        return terrainDTOS;
+    }
     @Override
     public List<Terrain> getAllTerrain() {
         return terrainRepository.findAll();

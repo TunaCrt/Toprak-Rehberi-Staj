@@ -39,9 +39,9 @@ public class Terrain {
     @OneToMany(mappedBy = "terrain", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PlantedCrop> plantings = new HashSet<>();
 
-    /*@OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",nullable = false, referencedColumnName = "id")
     @JsonIgnore
-    private User user;*/
+    private User user;
 }

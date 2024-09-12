@@ -16,30 +16,30 @@ const SignIn = () => {
         email,
         password,
       });
-
-      console.log("API yanıtı:", response.data); // Yanıtı kontrol edin
-
-      // Yanıt doğrudan token olarak dönüyor
-      // Bu satırda token'ın yanıtın içinden alınması gerekiyor
-      const token = response.data; // İlk kodda: const token = response.data;
-
+  
+      const { userId, token } = response.data; // userId ve token'ı ayıklayın
+  
+      console.log("userId:", userId); // userId'yi kontrol edin
+      console.log("Token:", token); // Token'ı kontrol edin
+  
       if (token) {
         localStorage.setItem('authToken', token); // Token'ı saklayın
+        localStorage.setItem('userId', userId); // userId'yi saklayın
         navigate("/home");
       } else {
         setError("Giriş başarısız");
       }
     } catch (error) {
-      console.error("Hata:", error); // Hata ayrıntılarını kontrol edin
-
-      // İlk kodda: setError(error.response?.data?.message || "Giriş başarısız, lütfen tekrar deneyin.");
+      console.error("Hata:", error);
+  
       if (error.response && error.response.data) {
-        setError(error.response.data.message || "Giriş başarısız, lütfen tekrar deneyin."); // Hata mesajını ayarla
+        setError(error.response.data.message || "Giriş başarısız, lütfen tekrar deneyin.");
       } else {
         setError("Giriş başarısız, lütfen tekrar deneyin.");
       }
     }
   };
+  
 
   return (
     <>

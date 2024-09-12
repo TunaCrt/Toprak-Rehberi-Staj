@@ -7,6 +7,8 @@ import HomeLayout from "../../component/HomeLayout";
 
 const Terrain = () => {
   const [terrainList, setTerrainList] = useState([]);
+  const userId = localStorage.getItem('userId'); // userId'yi localStorage'dan alın
+
   const [msg, setMsg] = useState("");
   useEffect(() => {
     init();
@@ -15,7 +17,7 @@ const Terrain = () => {
 
   const init = () => {
     terrainService
-      .getAllTerrain()
+      .getTerrainsByUserId(userId)
       .then((res) => {
         setTerrainList(res.data);
       })

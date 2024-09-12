@@ -29,6 +29,9 @@ class TerrainService {
     getAllTerrain() {
         return axiosInstance.get("/terrain");
     }
+    getTerrainsByUserId(id) {
+        return axiosInstance.get("/getTerrainsByUserId/"+id);
+    }
 
     getTerrainById(id) {
         return axiosInstance.get(`/terrain/${id}`);

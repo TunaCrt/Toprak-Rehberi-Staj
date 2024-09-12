@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/register", "/api/login","/cities", "/districts/**"
+                                .requestMatchers("/api/register", "/api/login","/cities", "/districts/**","/getTerrainsByUserId/{id}"
                                         , "/neighborhoods/**","/savePlantedCrop",
                                         "/getPlantedCropsByTerrainId/**","/getPlantedCropsByTerrainId2/**", "/plantedCrop/**","/plantedCrop2/**",
                                         "/deletePlantedCrop/**", "/editPlantedCrop/**","/saveProduct2",

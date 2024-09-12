@@ -1,21 +1,30 @@
 package com.Product_Managment_Backend.controller;
 
+import com.Product_Managment_Backend.dto.PlantedCropDTO;
+import com.Product_Managment_Backend.dto.TerrainDTO;
+import com.Product_Managment_Backend.model.PlantedCrop;
 import com.Product_Managment_Backend.model.Product;
 import com.Product_Managment_Backend.model.Terrain;
+import com.Product_Managment_Backend.model.User;
 import com.Product_Managment_Backend.service.ProductService;
 import com.Product_Managment_Backend.service.TerrainService;
+import com.Product_Managment_Backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class TerrainController {
     @Autowired
     private TerrainService terrainService;
+    @Autowired
+    private UserService userService;
 
-    @PostMapping("/saveTerrain")
+    /*@PostMapping("/saveTerrain")
     public ResponseEntity<?> saveTerrain(@RequestBody Terrain terrain) {
         try {
             Terrain savedTerrain = terrainService.saveTerrain(terrain);
@@ -23,6 +32,50 @@ public class TerrainController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }*/
+    @PostMapping("/saveTerrain")
+    public ResponseEntity<?> savePlantedCrop(@RequestBody TerrainDTO terrainDTO) {
+        try {
+            // Product ve Terrain ID'lerinin doğrulama
+
+            if (terrainDTO.getUserId() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User ID is missing.");
+            }
+
+            // Veritabanından Product ve Terrain nesnelerini al
+            User user = userService.getUserById(terrainDTO.getUserId());
+
+
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product not found.");
+            }
+
+
+            // PlantedCrop nesnesini oluştur ve alanları ayarla
+            Terrain terrain = new Terrain();
+
+            terrain.setUser(user);
+            terrain.setArea(terrainDTO.getArea());
+            terrain.setAdaNo(terrainDTO.getAdaNo());
+            terrain.setMahalleId(terrainDTO.getMahalleId());
+            terrain.setStatus(terrainDTO.getStatus());
+            terrain.setTerrainType(terrainDTO.getTerrainType());
+            terrain.setParselNo(terrainDTO.getParselNo());
+            terrain.setTerrainName(terrainDTO.getTerrainName());
+            terrain.setDescription(terrainDTO.getDescription());
+
+
+            Terrain savedTerrain = terrainService.saveTerrain(terrain);
+
+            return ResponseEntity.ok(terrain);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
+    }
+    @GetMapping("/getTerrainsByUserId/{id}")
+    public ResponseEntity<List<TerrainDTO>> getTerrainsByUserId(@PathVariable Long id) {
+        List<TerrainDTO> terrainDTOs = terrainService.getTerrainDTOsByUserId(id);
+        return new ResponseEntity<>(terrainDTOs, HttpStatus.OK);
     }
 
     @GetMapping("/terrain")

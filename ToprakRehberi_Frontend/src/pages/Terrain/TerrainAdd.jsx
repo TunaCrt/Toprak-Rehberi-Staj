@@ -10,7 +10,10 @@ const TerrainAdd = () => {
   const [neighborhoods, setNeighborhoods] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const userId = localStorage.getItem('userId'); // userId'yi localStorage'dan alın
+
   const [terrain, setTerrain] = useState({
+    userId:userId,
     terrainName: "",
     description: "",
     price: "",
