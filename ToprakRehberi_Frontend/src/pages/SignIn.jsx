@@ -12,32 +12,32 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const validateForm = () => {
-    const errors = {};
-  
+    const errors = [];
+
     if (!name.trim()) {
-      errors.name = "İsim gerekli.";
+      errors.push("İsim gerekli.");
     }
-  
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.trim()) {
-      errors.email = "Email gerekli.";
+      errors.push("Email gerekli.");
     } else if (!emailPattern.test(email)) {
-      errors.email = "Geçersiz email formatı.";
+      errors.push("Geçersiz email formatı.");
     }
-  
+
     if (password.length < 6) {
-      errors.password = "Şifre en az 6 karakter olmalı.";
+      errors.push("Şifre en az 6 karakter olmalı.");
+    } else {
+      const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+      if (!specialCharPattern.test(password)) {
+        errors.push("Şifre en az bir özel karakter içermeli.");
+      }
     }
-  
-    const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
-    if (!specialCharPattern.test(password)) {
-      errors.password = "Şifre en az bir özel karakter içermeli.";
-    }
-  
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
+
+    // Yalnızca ilk hatayı göster
+    setFormErrors({ general: errors[0] });
+    return errors.length === 0;
   };
-  
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -121,10 +121,11 @@ const SignIn = () => {
                           onChange={(e) => setPassword(e.target.value)}
                           required
                         />
-                        {formErrors.password && (
-                          <p className="text-danger">{formErrors.password}</p>
+                        {formErrors.general && (
+                          <p className="text-danger">{formErrors.general}</p>
                         )}
                       </div>
+
                       <div className="d-flex justify-content-center mt-3">
                         <button
                           type="submit"
