@@ -37,7 +37,6 @@ public class TerrainServiceImp implements TerrainService{
             //dto.setUserId(terrain.getUser().getId());
             dto.setAdaNo(terrain.getAdaNo());
             dto.setArea(terrain.getArea());
-            dto.setMahalleId(terrain.getMahalleId());
             dto.setTerrainName(terrain.getTerrainName());
             dto.setDescription(terrain.getDescription());
             dto.setStatus(terrain.getStatus());
@@ -47,6 +46,10 @@ public class TerrainServiceImp implements TerrainService{
             User user = userService.getUserById(terrain.getUser().getId());
             if (user != null) {
                 dto.setUserId(terrain.getUser().getId());
+            }
+            // Mahalle ID'sini ekleyelim
+            if (terrain.getNeighborhood() != null) {
+                dto.setMahalleId(terrain.getNeighborhood().getId());
             }
 
             terrainDTOS.add(dto);
@@ -90,7 +93,7 @@ public class TerrainServiceImp implements TerrainService{
         oldTerrain.setAdaNo(p.getAdaNo());
         oldTerrain.setParselNo(p.getParselNo());
         oldTerrain.setTerrainType(p.getTerrainType());
-        oldTerrain.setMahalleId(p.getMahalleId());
+        //oldTerrain.setMahalleId(p.getMahalleId());
 
         oldTerrain.setStatus(p.getStatus());
 

@@ -2,10 +2,8 @@ package com.Product_Managment_Backend.controller;
 
 import com.Product_Managment_Backend.dto.PlantedCropDTO;
 import com.Product_Managment_Backend.dto.TerrainDTO;
-import com.Product_Managment_Backend.model.PlantedCrop;
-import com.Product_Managment_Backend.model.Product;
-import com.Product_Managment_Backend.model.Terrain;
-import com.Product_Managment_Backend.model.User;
+import com.Product_Managment_Backend.model.*;
+import com.Product_Managment_Backend.service.NeighborhoodRepositoryService;
 import com.Product_Managment_Backend.service.ProductService;
 import com.Product_Managment_Backend.service.TerrainService;
 import com.Product_Managment_Backend.service.UserService;
@@ -23,6 +21,9 @@ public class TerrainController {
     private TerrainService terrainService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private NeighborhoodRepositoryService neighborhoodRepositoryService;
+
 
     /*@PostMapping("/saveTerrain")
     public ResponseEntity<?> saveTerrain(@RequestBody Terrain terrain) {
@@ -49,7 +50,11 @@ public class TerrainController {
             if (user == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product not found.");
             }
-
+            // Mahalle (Neighborhood) bilgisini ID'ye göre alıyoruz
+            Neighborhood neighborhood = neighborhoodRepositoryService.getNeighborhoodById(terrainDTO.getMahalleId());
+            if (neighborhood == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Neighborhood not found.");
+            }
 
             // PlantedCrop nesnesini oluştur ve alanları ayarla
             Terrain terrain = new Terrain();
@@ -57,7 +62,7 @@ public class TerrainController {
             terrain.setUser(user);
             terrain.setArea(terrainDTO.getArea());
             terrain.setAdaNo(terrainDTO.getAdaNo());
-            terrain.setMahalleId(terrainDTO.getMahalleId());
+            terrain.setNeighborhood(neighborhood);
             terrain.setStatus(terrainDTO.getStatus());
             terrain.setTerrainType(terrainDTO.getTerrainType());
             terrain.setParselNo(terrainDTO.getParselNo());

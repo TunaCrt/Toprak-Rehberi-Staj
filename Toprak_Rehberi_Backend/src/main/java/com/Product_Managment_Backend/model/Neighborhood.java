@@ -3,6 +3,9 @@ package com.Product_Managment_Backend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @Table(name = "mahalleler")
@@ -19,4 +22,7 @@ public class Neighborhood {
     @ManyToOne
     @JoinColumn(name = "ilce_id")
     private District district;
+
+    @OneToMany(mappedBy = "neighborhood", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Terrain> terrains = new HashSet<>();
 }

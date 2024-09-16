@@ -20,7 +20,7 @@ public class Terrain {
 
     //private Integer plantedCropId;
 
-    private Integer mahalleId;
+    //private Integer mahalleId;
 
     private String terrainName;
 
@@ -44,4 +44,10 @@ public class Terrain {
     @JoinColumn(name = "user_id",nullable = false, referencedColumnName = "id")
     @JsonIgnore
     private User user;
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mahalle_id",nullable = false, referencedColumnName = "mahalle_id")
+    @JsonIgnore
+    private Neighborhood neighborhood;
 }
