@@ -10,17 +10,16 @@ const TerrainAdd = () => {
   const [neighborhoods, setNeighborhoods] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const userId = localStorage.getItem('userId'); // userId'yi localStorage'dan alın
+  const userId = localStorage.getItem("userId"); // userId'yi localStorage'dan alın
 
   const [terrain, setTerrain] = useState({
-    userId:userId,
+    userId: userId,
     terrainName: "",
     description: "",
     price: "",
     status: "",
     mahalleId: "",
   });
-  
 
   const [msg, setMsg] = useState("");
 
@@ -36,7 +35,7 @@ const TerrainAdd = () => {
 
     locationService.getDistrictsByCity(cityId).then((response) => {
       setDistricts(response.data);
-      setNeighborhoods([]); 
+      setNeighborhoods([]);
       setTerrain({ ...terrain, mahalleId: "" });
     });
   };
@@ -58,7 +57,7 @@ const TerrainAdd = () => {
   const TerrainRegsiter = (e) => {
     e.preventDefault();
 
-    terrainService//
+    terrainService //
       .saveTerrain(terrain)
       .then((res) => {
         console.log("terrain Added Sucessfully");
@@ -77,7 +76,7 @@ const TerrainAdd = () => {
 
   return (
     <>
-    <HomeLayout/>
+      <HomeLayout />
       <div className="card-header fs-3 text-center mt-7">Arazi Ekle</div>
 
       <div className="container mt-3">
@@ -89,7 +88,7 @@ const TerrainAdd = () => {
               <div className="card-body">
                 <form onSubmit={(e) => TerrainRegsiter(e)}>
                   <div className="mb-3">
-                    <label>Enter Terrain Name</label>
+                    <label>Arazi ismi</label>
                     <input
                       type="text"
                       name="terrainName"
@@ -100,14 +99,19 @@ const TerrainAdd = () => {
                   </div>
 
                   <div className="mb-3">
-                    <label>terrainType</label>
-                    <input
-                      type="text"
+                    <label>Arazi Tipi</label>
+                    <select
                       name="terrainType"
                       className="form-control"
                       onChange={(e) => handleChange(e)}
                       value={terrain.terrainType}
-                    />
+                    >
+                      <option value="">Seçiniz...</option>
+                      <option value="Bağ">Bağ</option>
+                      <option value="Bahçe">Bahçe</option>
+                      <option value="Tarla">Tarla</option>
+                      <option value="Arsa">Arsa</option>
+                    </select>
                   </div>
                   <div className="mb-3">
                     <label>adaNo</label>
@@ -120,7 +124,7 @@ const TerrainAdd = () => {
                     />
                   </div>
                   <div className="mb-3">
-                    <label>parselNo</label>
+                    <label>parsel no</label>
                     <input
                       type="text"
                       name="parselNo"
@@ -156,7 +160,7 @@ const TerrainAdd = () => {
               <div className="card-body">
                 <form onSubmit={(e) => TerrainRegsiter(e)}>
                   <div className="mb-3">
-                    <label>Enter Description</label>
+                    <label>Açıklama</label>
                     <input
                       type="text"
                       name="description"
@@ -166,7 +170,7 @@ const TerrainAdd = () => {
                     />
                   </div>
                   <div className="mb-3">
-                    <label>Enter area</label>
+                    <label>Arazi alanı m<sup>2</sup></label>
                     <input
                       type="text"
                       name="area"
@@ -176,6 +180,7 @@ const TerrainAdd = () => {
                     />
                   </div>
 
+                  {/*
                   <div className="mb-3">
                     <label>Enter Status</label>
                     <input
@@ -186,6 +191,7 @@ const TerrainAdd = () => {
                       value={terrain.status}
                     />
                   </div>
+                  */}
                   {/*<div className="mb-3">
                     <label>Mahalle</label>
                     <input
@@ -247,9 +253,3 @@ const TerrainAdd = () => {
 };
 
 export default TerrainAdd;
-
-
-
-
-
-
